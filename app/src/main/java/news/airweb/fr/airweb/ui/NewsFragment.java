@@ -37,7 +37,7 @@ public class NewsFragment extends Fragment implements IMainView {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        adapter = new NewsAdapter(getContext());
+        adapter = new NewsAdapter((MainActivity)getActivity());
 
         rcvNews.setLayoutManager(new LinearLayoutManager(getContext()));
         rcvNews.hasFixedSize();

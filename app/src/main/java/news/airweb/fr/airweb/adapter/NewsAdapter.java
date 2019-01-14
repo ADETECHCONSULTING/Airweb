@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -18,14 +17,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import news.airweb.fr.airweb.R;
 import news.airweb.fr.airweb.model.News;
+import news.airweb.fr.airweb.ui.MainActivity;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
-    public Context context;
+    public MainActivity activity;
     public List<News> items;
 
-    public NewsAdapter(Context context) {
-        this.context = context;
+    public NewsAdapter(MainActivity activity) {
+        this.activity = activity;
     }
 
     public void resetData(List<News> items){
@@ -36,14 +36,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     @NonNull
     @Override
     public NewsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_news, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.fragment_news, parent, false);
 
         NewsHolder newsHolder = new NewsHolder(view);
 
         newsHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
+                //activity.changeFragment(new DetailFragment);
             }
         });
 
@@ -70,7 +70,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         public NewsHolder(@NonNull View itemView) {
             super(itemView);
 
-            ButterKnife.bind(context, itemView);
+            ButterKnife.bind(activity, itemView);
         }
 
         public void setData(News item){
